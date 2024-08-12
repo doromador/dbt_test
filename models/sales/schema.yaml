@@ -1,0 +1,90 @@
+version: 2
+
+models:
+  - name: fct_sales
+    description: "This model selects all columns from the sales table."
+    columns:
+      - name: reference_id
+        description: "Unique identifier for the reference."
+        tests:
+          - not_null
+          - unique
+      - name: country
+        description: "Country of the transaction."
+        tests:
+          - not_null
+      - name: product_code
+        description: "Code for the product."
+        tests:
+          - not_null
+      - name: product_name
+        description: "Name of the product."
+        tests:
+          - not_null
+      - name: subscription_start_date
+        description: "Date when the subscription started."
+      - name: subscription_deactivation_date
+        description: "Date when the subscription was deactivated."
+      - name: subscription_duration_months
+        description: "Duration of the subscription in months."
+        tests:
+          - not_null
+      - name: order_date_kyiv
+        description: "Order date in Kyiv."
+        tests:
+          - not_null
+      - name: order_date_utc
+        description: "Order date in UTC."
+      - name: order_date_new_york
+        description: "Order date in New York."
+      - name: return_date_kyiv
+        description: "Return date in Kyiv."
+      - name: return_date_utc
+        description: "Return date in UTC."
+      - name: return_date_new_york
+        description: "Return date in New York."
+      - name: last_rebill_date_kyiv
+        description: "Last rebill date in Kyiv."
+      - name: has_chargeback
+        description: "Indicates if there is a chargeback."
+        tests:
+          - accepted_values:
+              values: ['Yes', 'No']
+      - name: has_refund
+        description: "Indicates if there is a refund."
+        tests:
+          - accepted_values:
+              values: ['Yes', 'No']
+      - name: sales_agent_name
+        description: "Name of the sales agent."
+      - name: source
+        description: "Source of the transaction."
+      - name: campaign_name
+        description: "Name of the campaign."
+      - name: total_amount
+        description: "Total amount of the transaction."
+        tests:
+          - not_null
+      - name: discount_amount
+        description: "Amount of discount applied."
+      - name: number_of_rebills
+        description: "Number of rebills."
+      - name: original_amount
+        description: "Original amount before any adjustments."
+      - name: returned_amount
+        description: "Amount returned in case of a return."
+      - name: total_rebill_amount
+        description: "Total amount of all rebills."
+      - name: days_between_order_return
+        description: "The difference in days between the refund date and the purchase date."
+      - name: full_profit
+        description: "The company's revenue from sales, including rebills and refunds."
+        tests:
+          - not_null
+      - name: rebills_profit
+        description: "The company's income comes only from rebills."
+      - name: returned_amount_sum
+        description: "Amount of returned funds."
+        tests:
+          - not_null
+
